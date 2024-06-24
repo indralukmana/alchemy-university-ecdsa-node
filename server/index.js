@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 const app = express();
-const port = 3042;
+const port = 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -32,6 +32,10 @@ const allTransactions = {
   "0x020fb7ac853fcd38200160dfd28718131b4a079e": [],
   "0xc36b16366f094d4d49a31c3c40055be4bac12d69": [],
 };
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.get("/balance/:address", (req, res) => {
   const { address } = req.params;
