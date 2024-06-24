@@ -20,17 +20,42 @@ const balances = {
   "0xc36b16366f094d4d49a31c3c40055be4bac12d69": 342,
 };
 
+const allTransactions = {
+  "0x87690b41812c6c2bcf1a08a1576da4e71282c042": [],
+  "0x134b4689ed7e646208968f6b9154195ca08e6d55": [],
+  "0x6767bd201cad4ed82346feeb5ab88cbc452418ec": [],
+  "0x1dac16bbc1721c328b0ab024da2ab310b6bcf1c1": [],
+  "0xd76bf9a86597a504a760cd60f44bc8617d1bc6e3": [],
+  "0x9483d4e803f33ee4a0be1d73d5020a3e3474dbf7": [],
+  "0x0e077aec30bfb877dbfde69c9c48c2a996715d39": [],
+  "0x5f1563214cb1b6726fc9180647c23caade41dbda": [],
+  "0x020fb7ac853fcd38200160dfd28718131b4a079e": [],
+  "0xc36b16366f094d4d49a31c3c40055be4bac12d69": [],
+};
+
 app.get("/balance/:address", (req, res) => {
   const { address } = req.params;
   const balance = balances[address] || 0;
   res.send({ balance });
 });
 
+app.get("/transactions/:address", (req, res) => {
+  const { address } = req.params;
+  const transactions = allTransactions[address] || [];
+  res.send({ transactions });
+});
+
 app.post("/send", (req, res) => {
-  const { sender, recipient, amount } = req.body;
+  let { sender, recipient, amount, txHash } = req.body;
+  console.log({ sender, recipient, amount, txHash });
+
+  sender = sender.toLowerCase();
+  recipient = recipient.toLowerCase();
 
   setInitialBalance(sender);
   setInitialBalance(recipient);
+  allTransactions[sender].push({ sender, recipient, amount, txHash });
+  allTransactions[recipient].push({ sender, recipient, amount, txHash });
 
   if (balances[sender] < amount) {
     res.status(400).send({ message: "Not enough funds!" });
