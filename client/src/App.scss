@@ -15,9 +15,9 @@ label {
 }
 
 .app {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   max-width: 1400px;
-  flex-wrap: wrap;
   gap: 12px;
   margin: 0 auto;
 }
