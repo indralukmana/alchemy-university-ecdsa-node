@@ -1,5 +1,5 @@
 import { useState } from "react";
-import server from "./server";
+import server from "./utils/server";
 import { buildMessageHash } from "./utils/wallet-utils";
 
 function Transfer({ address, setBalance, currentBalance, setTransactions }) {
