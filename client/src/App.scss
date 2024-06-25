@@ -54,7 +54,7 @@ input {
   border-radius: 0.125rem;
   padding: 10px 20px;
   color: white;
-  display: inline-flex;
+  display: inline-block;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
@@ -62,26 +62,101 @@ input {
   &:hover {
     cursor: pointer;
   }
+
+  width: 100%;
 }
 
 .wallet {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: min-content min-content min-content 1fr;
+  gap: 4em;
 
-  .balance,
-  .address {
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    font-size: 0.9em;
-    display: inline-flex;
-    margin-top: 10px;
+  .wallet-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .balance,
+    .address {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 400;
+      font-size: 0.7em;
+      display: inline-flex;
+      margin-top: 10px;
+      padding: 0.75rem;
+      background-color: #f4f6f8;
+    }
+  }
+
+  .wallet-select {
+    display: flex;
+    flex-direction: column;
     padding: 0.75rem;
     background-color: #f4f6f8;
+    max-height: 200px;
+    overflow-y: auto;
+
+    .wallet-select-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #f4f;
+      padding: 0.75rem;
+      border-radius: 0.125rem;
+      cursor: pointer;
+
+      // radio button
+
+      // hide the radio button
+      input[type="radio"] {
+        display: none;
+      }
+
+      // selected item
+      input[type="radio"]:checked + label {
+        background-color: #319795;
+        color: white;
+      }
+    }
+  }
+
+  .wallet-transactions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .wallet-transaction-card {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem;
+      background-color: #f4f6f8;
+      border-radius: 0.125rem;
+      max-width: 400px;
+
+      font-size: small;
+      letter-spacing: 0.05rem;
+      font-weight: 400;
+      color: #222;
+
+      > p {
+        word-wrap: break-word; /* Ensure long words break and wrap */
+        white-space: pre-wrap; /* Wrap long lines without collapsing spaces */
+      }
+    }
   }
 }
 
 .transfer {
-  display: flex;
-  flex-direction: column;
+  .transfer-send-verification {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  }
 }

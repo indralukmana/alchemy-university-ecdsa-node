@@ -21,9 +21,10 @@ export const WalletSelect = ({ onSelect, selected }) => {
   }
 
   return (
-    <div>
+    <div className="wallet-select">
+      <h2>Wallet Primary Keys</h2>
       {wallets.map((wallet) => (
-        <label key={wallet}>
+        <label key={wallet} className="wallet-select-item">
           <input
             type="radio"
             name="wallets"
@@ -31,7 +32,7 @@ export const WalletSelect = ({ onSelect, selected }) => {
             checked={selected === wallet}
             onChange={onChange}
           />
-          {wallet}
+          {wallet.slice(0, 6) + "…" + wallet.slice(-6)}
         </label>
       ))}
     </div>

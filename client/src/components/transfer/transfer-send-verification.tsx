@@ -32,21 +32,21 @@ export const TransferSendVerification = ({
   }
 
   return (
-    <section>
+    <section className="transfer-send-verification">
       <h1>Verify Transaction</h1>
       <div>
         <p>Sender: {address}</p>
         <p>Amount: {sendAmount}</p>
         <p>Recipient: {recipient}</p>
       </div>
-      {/* cancel button */}
-      <button className="button" onClick={() => setIsVerifying(false)}>
-        Cancel
-      </button>
-      {/* verify button */}
-      <button className="button" onClick={transfer}>
-        Verify
-      </button>
+      <div className="buttons">
+        <button className="button" onClick={() => setIsVerifying(false)}>
+          Cancel
+        </button>
+        <button className="button" onClick={transfer}>
+          Verify
+        </button>
+      </div>
     </section>
   );
 };

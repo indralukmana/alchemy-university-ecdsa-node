@@ -2,17 +2,17 @@ import React from "react";
 
 export const WalletTransactions = ({ transactions }) => {
   return (
-    <div className="transactions">
+    <div className="wallet-transactions">
       {transactions.map((transaction) => {
         return (
-          <div key={transaction.txHash}>
+          <div key={transaction.txHash} className="wallet-transaction-card">
             <p>
               Transaction Hash:
               {transaction.txHash}
             </p>
             <p>
               From:
-              {transaction.from}
+              {transaction.sender}
             </p>
             <p>
               To:

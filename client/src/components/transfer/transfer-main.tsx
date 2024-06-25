@@ -9,7 +9,7 @@ function Transfer({ address, setBalance, currentBalance, setTransactions }) {
   const [txHash, setTxHash] = useState("");
 
   return (
-    <div className="container">
+    <div className="transfer container">
       {!isVerifying && (
         <TransferSendForm
           currentBalance={currentBalance}
